@@ -16,7 +16,7 @@ int main()
     Mat img1 = imread("Paris1.jpg");
     Mat img2 = imread("Paris.jpg");
 
-    //-- Step 1: Detect the keypoints using SURF Detector, compute the descriptors
+    //-- Step 1: Detect the keypoints using SIFT Detector, compute the descriptors
     Ptr<SIFT> detector = SIFT::create(100,3,0.03,10,1.2);
     std::vector<KeyPoint> keypoints1, keypoints2;
 
@@ -25,7 +25,7 @@ int main()
     detector->detectAndCompute(img2, noArray(), keypoints2, descriptors2);
 
     //-- Step 2: Matching descriptor vectors with a brute force matcher
-    // Since SURF is a floating-point descriptor NORM_L2 is used
+    // Since SIFT is a floating-point descriptor NORM_L2 is used
     Ptr<BFMatcher> matcher = BFMatcher::create(NORM_L2,true);
     std::vector< DMatch > matches;
     matcher->match(descriptors1, descriptors2, matches);
